@@ -1,0 +1,1849 @@
+{
+	"info": {
+		"_postman_id": "3550bace-f511-4cb4-bcbf-50cde6670c76",
+		"name": "InventoryAPISamples",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Inventory - API",
+			"item": [
+				{
+					"name": "InventorySets",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/InventorySets",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"InventorySets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InventorySet",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/InventorySets('{{InventorySetId}}')",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"InventorySets('{{InventorySetId}}')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InventorySet by UniqueId",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/InventorySets('d3f7d4e6-aa56-6dfd-a83d-6b85286237ee')",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"InventorySets('d3f7d4e6-aa56-6dfd-a83d-6b85286237ee')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InventoryInformation (Habitat)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/InventoryInformation('Habitat_Inventory-6042058-56042058')",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"InventoryInformation('Habitat_Inventory-6042058-56042058')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "InventoryInformation by UniqueId (Habitat)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/InventoryInformation('d75f6f6f-93c2-6dcf-97e8-56e2f7eac50e')",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"InventoryInformation('d75f6f6f-93c2-6dcf-97e8-56e2f7eac50e')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Lists - Inventory Set To Catalog Relationships",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "http://{{ServiceHost}}/{{ShopsApi}}/GetList(id='InventorySetToCatalog-{{InventorySetFriendlyId}}',type='Sitecore.Commerce.Plugin.Catalog.Catalog, Sitecore.Commerce.Plugin.Catalog',skip=0,take=100)?$expand=Items",
+							"protocol": "http",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetList(id='InventorySetToCatalog-{{InventorySetFriendlyId}}',type='Sitecore.Commerce.Plugin.Catalog.Catalog, Sitecore.Commerce.Plugin.Catalog',skip=0,take=100)"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "Items"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export Inventory Sets",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"fileName\":\"ExportInventorySets.zip\",\n\"mode\":\"full\",\n\"maximumItemsPerFile\":\"200\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/ExportInventorySets",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"ExportInventorySets"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Inventory Sets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee16e7ba-dff0-441f-9fb7-6be08ed20795",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "importFile",
+									"value": "",
+									"type": "file"
+								},
+								{
+									"key": "mode",
+									"value": "replace",
+									"type": "text"
+								},
+								{
+									"key": "batchSize",
+									"value": "900",
+									"type": "text"
+								},
+								{
+									"key": "errorThreshold",
+									"value": "10",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/ImportInventorySets()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"ImportInventorySets()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Local Inventory Sets",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ee16e7ba-dff0-441f-9fb7-6be08ed20795",
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"importFilePath\":\"\",\n\"mode\":\"replace\",\n\"batchSize\":\"900\",\n\"errorThreshold\":\"10\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/ImportLocalInventorySets()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"ImportLocalInventorySets()"
+							]
+						},
+						"description": "When importing local onPrem or in Azure, place the file in the 'data\\\\catalogs' folder and use '<filename>' as the importFilePath in the body of the request.\r\n\r\nWhen importing into a container, place the file in the mapped catalogs volume, by default the 'engine\\\\catalogs' folder and use a relative path of '..\\\\catalogs\\\\<filename>' as the importFilePath in the body of the request.\""
+					},
+					"response": []
+				},
+				{
+					"name": "Get bulk stock information",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"itemIds\": [\n\"Habitat_Master|6042264|\",\n\"Habitat_Master|6042265|\"\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetBulkStockInformation()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetBulkStockInformation()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get bulk stock information (Bundle)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"itemIds\": [\n\"Habitat_Master|6001001|\"\n],\n\"includeBundledItemsInventory\": true\n}\n"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetBulkStockInformation()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetBulkStockInformation()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Inventory - DoActions",
+			"item": [
+				{
+					"name": "Add Inventory Set",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"function findAddedEntity(model) {",
+									"    return model['@odata.type'] === '#Sitecore.Commerce.Core.PersistedEntityModel' && model['Name'] === 'Sitecore.Commerce.Plugin.Inventory.InventorySet';",
+									"}",
+									"",
+									"postman.setGlobalVariable(\"InventorySetId\", jsonData.Models.find(findAddedEntity).EntityId);",
+									"postman.setGlobalVariable(\"InventorySetFriendlyId\", jsonData.Models.find(findAddedEntity).EntityFriendlyId);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"Details\",\n\"DisplayName\": \"Details\",\n\"EntityId\": \"\",\n\"Action\": \"AddInventorySet\",\n\"ItemId\": \"\",\n\"Properties\": [\n{\n\"Name\": \"Name\",\n\"DisplayName\": \"Name\",\n\"Value\": \"PostmanInventorySet\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"DisplayName\",\n\"DisplayName\": \"Display Name\",\n\"Value\": \"Postman Inventory Set\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Description\",\n\"DisplayName\": \"Description\",\n\"Value\": \"Postman Inventory Set Description\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"dashboard\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Inventory Set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"Details\",\n\"DisplayName\": \"Details\",\n\"EntityId\": \"{{InventorySetId}}\",\n\"Action\": \"EditInventorySet\",\n\"ItemId\": \"\",\n\"Properties\": [\n{\n\"Name\": \"Version\",\n\"DisplayName\": \"Version\",\n\"Value\": \"1\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Name\",\n\"DisplayName\": \"Name\",\n\"Value\": \"PostmanInventorySet\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": true,\n\"IsRequired\": false\n},\n{\n\"Name\": \"DisplayName\",\n\"DisplayName\": \"Display Name\",\n\"Value\": \"Postman Inventory Set (updated)\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Description\",\n\"DisplayName\": \"Description\",\n\"Value\": \"Postman Inventory Set Description\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": false\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"chart_column_stacked\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Sellable Item to Inventory Set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"AssociateSellableItem\",\n\"DisplayName\": \"AssociateSellableItem\",\n\"EntityId\": \"{{InventorySetId}}\",\n\"Action\": \"AssociateSellableItem\",\n\"ItemId\": \"\",\n\"Properties\": [\n{\n\"Name\": \"Version\",\n\"DisplayName\": \"Version\",\n\"Value\": \"2\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n},\n{\n\"Name\": \"SellableItem\",\n\"DisplayName\": \"SellableItem\",\n\"Value\": \"{{SellableItemId}}\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Quantity\",\n\"DisplayName\": \"Quantity\",\n\"Value\": \"500\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"dashboard\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Sellable Item to Inventory Set (preorderable & backorderable)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"AssociateSellableItem\",\n\"DisplayName\": \"AssociateSellableItem\",\n\"EntityId\": \"{{InventorySetId}}\",\n\"Action\": \"AssociateSellableItemToInventorySet\",\n\"ItemId\": \"\",\n\"Properties\": [\n{\n\"Name\": \"Version\",\n\"DisplayName\": \"Version\",\n\"Value\": \"2\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n},\n{\n\"Name\": \"SellableItem\",\n\"DisplayName\": \"SellableItem\",\n\"Value\": \"{{SellableItemId}}\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Quantity\",\n\"DisplayName\": \"Quantity\",\n\"Value\": \"100\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Preorderable\",\n\"DisplayName\": \"Preorderable\",\n\"Value\": \"true\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.Boolean\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"PreorderAvailabilityDate\",\n\"DisplayName\": \"PreorderAvailabilityDate\",\n\"Value\": \"07/12/2017 13:10:51 +00:00\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.DateTimeOffset\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"PreorderLimit\",\n\"DisplayName\": \"PreorderLimit\",\n\"Value\": \"0\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Backorderable\",\n\"DisplayName\": \"Backorderable\",\n\"Value\": \"true\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.Boolean\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"BackorderAvailabilityDate\",\n\"DisplayName\": \"BackorderAvailabilityDate\",\n\"Value\": \"07/12/2017 13:10:51 +00:00\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.DateTimeOffset\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"BackorderLimit\",\n\"DisplayName\": \"BackorderLimit\",\n\"Value\": \"0\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"dashboard\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disassociate Sellable Item from Inventory Set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"\",\n\"DisplayName\": null,\n\"EntityId\": \"{{InventorySetId}}\",\n\"Action\": \"DisassociateSellableItem\",\n\"ItemId\": \"{{SellableItemId}}\",\n\"Properties\": [\n{\n\"Name\": \"Version\",\n\"DisplayName\": \"Version\",\n\"Value\": \"2\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"dashboard\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transfer Inventory",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"TransferInventory\",\n\"DisplayName\": \"Transfer Inventory\",\n\"EntityId\": \"{{InventorySetId}}\",\n\"Action\": \"TransferInventory\",\n\"ItemId\": \"{{SellableItemId}}\",\n\"Properties\": [\n{\n\"Name\": \"Version\",\n\"DisplayName\": \"Version\",\n\"Value\": \"2\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n},\n{\n\"Name\": \"ProductId\",\n\"DisplayName\": \"Product Id\",\n\"Value\": \"Entity-SellableItem-123456\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n},\n{\n\"Name\": \"TargetInventorySet\",\n\"Policies\": [\n{\n\"@odata.type\": \"#Sitecore.Commerce.Core.AvailableSelectionsPolicy\",\n\"PolicyId\": \"ec37aa641a2546e2a0ae983a6f4f8ad5\",\n\"Models\": [],\n\"List\": [\n{\n\"Name\": \"Entity-InventorySet-Habitat_Inventory\",\n\"DisplayName\": \"Habitat_Inventory\",\n\"IsDefault\": false\n}\n],\n\"AllowMultiSelect\": false\n}\n],\n\"DisplayName\": \"Target Inventory Set\",\n\"Value\": \"\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n},\n{\n\"Name\": \"Quantity\",\n\"DisplayName\": \"Quantity\",\n\"Value\": \"0\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"chart_column_stacked\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associate Catalog to Inventory Set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"InventorySetCatalogs\",\n\"DisplayName\": \"Catalogs\",\n\"EntityId\": \"{{InventorySetId}}\",\n\"Action\": \"AssociateCatalog\",\n\"ItemId\": \"\",\n\"Properties\": [\n{\n\"Name\": \"Version\",\n\"DisplayName\": \"Version\",\n\"Value\": \"1\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n},\n{\n\"Name\": \"CatalogName\",\n\"DisplayName\": \"Catalog Name\",\n\"Value\": \"{{CatalogFriendlyId}}\",\n\"IsHidden\": false,\n\"OriginalType\": \"System.String\",\n\"IsReadOnly\": false,\n\"IsRequired\": true\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"chart_column_stacked\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Disassociate Catalog from Inventory Set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":{\n\"Name\": \"\",\n\"DisplayName\": \"\",\n\"EntityId\": \"{{InventorySetId}}\",\n\"Action\": \"DisassociateCatalog\",\n\"ItemId\": \"{{CatalogFriendlyId}}\",\n\"Properties\": [\n{\n\"Name\": \"Version\",\n\"DisplayName\": \"Version\",\n\"Value\": \"1\",\n\"IsHidden\": true,\n\"OriginalType\": \"System.Int32\",\n\"IsReadOnly\": true,\n\"IsRequired\": true\n}\n],\n\"DisplayRank\": 500,\n\"UiHint\": \"Flat\",\n\"Icon\": \"chart_column_stacked\"\n}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Inventory Set",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\": {\n\t\t\"Action\": \"RemoveInventorySet\",\n\t\t\"ItemId\": \"{{InventorySetId}}\"\n\t\t}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Inventory Set can be deleted",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"entityView\":\n\t{\n\t\"EntityId\": \"\",\n\t\"ItemId\": \"{{InventorySetId}}\",\n\t\"Name\": \"\",\n\t\"Action\": \"ValidateInventorySetCanBeRemoved\",\n\t\"ActionResult\": null,\n\t\"EntityVersion\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/DoAction()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"DoAction()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Inventory - Views",
+			"item": [
+				{
+					"name": "Inventory Dashboard",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"\",\n\"viewName\":\"InventoryDashboard\",\n\"forAction\":\"\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory Set - Details - For Add",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"\",\n\"viewName\":\"Details\",\n\"forAction\":\"AddInventorySet\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory Set - Details - For Edit",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"{{InventorySetId}}\",\n\"viewName\":\"Details\",\n\"forAction\":\"EditInventorySet\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory Set - Details - For Delete",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\": \"\",\n\"viewName\": \"\",\n\"forAction\": \"RemoveInventorySet\",\n\"itemId\": \"{{InventorySetId}}\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory Set - Details - For Associate Catalog",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"{{InventorySetId}}\",\n\"viewName\":\"InventorySetCatalogs\",\n\"forAction\":\"AssociateCatalog\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory Set - Details - For Disassociate Catalog",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"{{InventorySetId}}\",\n\"itemId\":\"{{CatalogFriendlyId}}\",\n\"viewName\":\"\",\n\"forAction\":\"DisassociateCatalog\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory SKU - Details - For Associate Sellable Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"{{InventorySetId}}\",\n\"viewName\":\"AssociateSellableItem\",\n\"forAction\":\"AssociateSellableItem\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory SKU - Details - For Disassociate Sellable Item",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"{{InventorySetId}}\",\n\"itemId\":\"{{SellableItemId}}\",\n\"viewName\":\"\",\n\"forAction\":\"DisassociateSellableItem\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Inventory SKU - Details - For Transfer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}"
+							},
+							{
+								"key": "ShopperId",
+								"value": "{{ShopperId}}"
+							},
+							{
+								"key": "Language",
+								"value": "{{Language}}"
+							},
+							{
+								"key": "Currency",
+								"value": "{{Currency}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}"
+							},
+							{
+								"key": "GeoLocation",
+								"value": "{{GeoLocation}}"
+							},
+							{
+								"key": "CustomerId",
+								"value": "{{CustomerId}}"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"entityId\":\"{{InventorySetId}}\",\n\"itemId\":\"{{SellableItemId}}\",\n\"viewName\":\"TransferInventory\",\n\"forAction\":\"TransferInventory\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{ShopsApi}}/GetEntityView()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{ShopsApi}}",
+								"GetEntityView()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

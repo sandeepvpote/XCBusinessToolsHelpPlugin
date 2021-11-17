@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Description>The Sitecore Commerce Content Hub Plugin Sample.</Description>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageTags>$(PackageTags);Commerce;Plugin;Sample;Content Hub</PackageTags>
+    <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sitecore.Commerce.Plugin.Management" Version="6.0.*" />
+    <PackageReference Include="Sitecore.Commerce.Plugin.Catalog" Version="6.0.*" />
+    <PackageReference Include="Sitecore.Commerce.Plugin.Orders" Version="6.0.*" />
+    <PackageReference Include="Sitecore.Commerce.Plugin.FaultInjection" Version="6.0.*" />
+
+    <PackageReference Include="Microsoft.Azure.ServiceBus" Version="4.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="3.1.5" />
+
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+
+    <PackageReference Include="Stylelabs.M.Sdk.WebClient" Version="3.2.2" />
+  </ItemGroup>
+
+  <!--Ignoring rule NU1608 until we are able to upgrade the Stylelabs SDK version-->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>NU1603;NU1605;NU1608</NoWarn>
+    <WarningsAsErrors />
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>NU1603;NU1605;NU1608</NoWarn>
+    <WarningsAsErrors />
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+</Project>

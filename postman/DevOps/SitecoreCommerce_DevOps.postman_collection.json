@@ -1,0 +1,2313 @@
+{
+	"info": {
+		"_postman_id": "4b3021a9-a744-47f8-831c-3246da21f971",
+		"name": "SitecoreCommerce_DevOps",
+		"description": "Example calls for direct http requests to support DevOps functionlity\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 Environment Bootstrap",
+			"item": [
+				{
+					"name": "Bootstrap Sitecore Commerce",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/Bootstrap()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"Bootstrap()"
+							]
+						},
+						"description": "This call will set up an initial install by adding any necessary artifacts to the Global Environment and creating any other logical environments.\nThis can be run at any time and will rewrite environments to their original states from the environment data stored here:\n~\\wwwroot\\data\\Environments"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "2 Clean Environment",
+			"item": [
+				{
+					"name": "Clean Environment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"environment\":\"{{Environment}}\"\n}"
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/CleanEnvironment()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"CleanEnvironment()"
+							]
+						},
+						"description": "Completely removes all artifacts from the passed-in Environment.\n"
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "3 Environment Initialize",
+			"item": [
+				{
+					"name": "Initialize OpsApi Environment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/InitializeEnvironment(environment='CommerceOps')",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"InitializeEnvironment(environment='CommerceOps')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Initialize Environment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9b88e106-3458-46d2-bfdc-bd5e6391494c",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"environment\": \"{{Environment}}\",\n\t\"sampleData\": true\n}"
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/InitializeEnvironment()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"InitializeEnvironment()"
+							]
+						},
+						"description": "Runs an InitializeEnvironment Pipeline which allows any artifacts to be created that need to be in a new environment."
+					},
+					"response": []
+				},
+				{
+					"name": "Ensure\\Sync default content paths",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "53087d64-3202-41f3-944c-39e475099d40",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"environment\": \"{{Environment}}\",\n\t\"shopName\": \"{{ShopName}}\"\n}\n"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/EnsureSyncDefaultContentPaths()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"EnsureSyncDefaultContentPaths()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Long Running Command Status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5faf00e1-40a0-41e4-a587-2fa3d9c78df9",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/CheckCommandStatus(taskId={{LongRunningTaskId}})",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"CheckCommandStatus(taskId={{LongRunningTaskId}})"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "4 Environment Management",
+			"item": [
+				{
+					"name": "Get Environment ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/Environments('{{Environment}}')?$expand=Components",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"Environments('{{Environment}}')"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "Components"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Environment  By UniqueID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/Environments('B847E3BA-EA32-62DC-B1C0-3225CA524AA5')?$expand=Components",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"Environments('B847E3BA-EA32-62DC-B1C0-3225CA524AA5')"
+							],
+							"query": [
+								{
+									"key": "$expand",
+									"value": "Components"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Export Environment",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/ExportEnvironment(environmentName='{{Environment}}')",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"ExportEnvironment(environmentName='{{Environment}}')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Environments",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/Environments",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"Environments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset Node Context",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"environmentId\":\"Entity-CommerceEnvironment-AdventureWorksShops\"\n}"
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/ResetNodeContext()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"ResetNodeContext()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": " Migrate Environment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"sourceName\": \"AdventureWorksAuthoring\",\r\n \"newName\": \"TestMigration\",\r\n \"newArtifactStoreId\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/MigrateEnvironment()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"MigrateEnvironment()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Import Environment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"rawEnvironment\": \"{\r\n        \\\"$type\\\": \\\"Sitecore.Commerce.Core.CommerceEnvironment, Sitecore.Commerce.Core\\\",\r\n        \\\"ArtifactStoreId\\\": \\\"78a1ea61-1f37-42a7-ac89-9a3f46d60ca5\\\",\r\n        \\\"Components\\\": [\r\n            {\r\n                \\\"$type\\\": \\\"Sitecore.Commerce.Plugin.ManagedLists.ListMembershipsComponent, Sitecore.Commerce.Plugin.ManagedLists\\\",\r\n                \\\"Memberships\\\": [\r\n                    \\\"CommerceEnvironments\\\"\r\n                ]\r\n            }\r\n        ],\r\n        \\\"Id\\\": \\\"Entity-CommerceEnvironment-PostmanHabitatShops\\\",\r\n        \\\"Name\\\": \\\"PostmanHabitatShops\\\",\r\n        \\\"Policies\\\": [\r\n            {\r\n                \\\"$type\\\": \\\"Sitecore.Commerce.Core.PolicySetPolicy, Sitecore.Commerce.Core\\\",\r\n                \\\"PolicySetId\\\": \\\"Entity-PolicySet-CatalogPolicySet\\\"\r\n            }\r\n        ]\r\n    }\"\r\n}"
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/ImportEnvironment()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"ImportEnvironment()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Caching",
+			"item": [
+				{
+					"name": "Get cache stores",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/GetCacheStores()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"GetCacheStores()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cache store",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/GetCacheStore(name='Commerce-Redis-Store')",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"GetCacheStore(name='Commerce-Redis-Store')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get data cache store",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/GetDataCacheStore(name='Commerce-Redis-Store')",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"GetDataCacheStore(name='Commerce-Redis-Store')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get cache",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/GetCache(name='Items')",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"GetCache(name='Items')"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear cache store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/ClearCacheStore()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"ClearCacheStore()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear data store caches",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "Environment",
+								"value": "{{Environment}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/ClearDataStoreCaches()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"ClearDataStoreCaches()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clear cache",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "Environment",
+								"type": "text",
+								"value": "{{Environment}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"cacheName\": \"Items\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/ClearCache()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"ClearCache()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Entities",
+			"item": [
+				{
+					"name": "Get raw entity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"entityId\": \"Entity-SellableItem-AW007 08\",\n \"environmentName\": \"{{Environment}}\"\n}"
+						},
+						"url": {
+							"raw": "{{ServiceHost}}/{{OpsApi}}/GetRawEntity()",
+							"host": [
+								"{{ServiceHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"GetRawEntity()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Minions",
+			"item": [
+				{
+					"name": "Check Long Running Command Status for Minions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "24573059-ee2f-4a07-9614-ddb94d6d697b",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/CheckCommandStatus(taskId={{LongRunningTaskId}})",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"CheckCommandStatus(taskId={{LongRunningTaskId}})"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run PendingOrders Minion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de5fca0b-a247-4dde-94f6-f79e7e32d8e1",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Orders.PendingOrdersMinionBoss, Sitecore.Commerce.Plugin.Orders\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": [ \n\t]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run ReleasedOrders Minion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "18154074-cc40-4be0-97f7-5355af86404f",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Orders.ReleasedOrdersMinion, Sitecore.Commerce.Plugin.Orders\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": []\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run WaitingForAvailabilityOrders Minion ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7cbdd0fb-aedf-4daa-8d65-40db76a27575",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Orders.DelayedAvailability.WaitingForAvailabilityOrdersMinion, Sitecore.Commerce.Plugin.Orders.DelayedAvailability\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": []\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run SettleSalesActivities Minion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e7191376-f07a-43ae-b917-c3c7b701fed8",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Orders.SettleSalesActivitiesMinion, Sitecore.Commerce.Plugin.Orders\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": []\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run RefundRmas Minion ",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1449f67e-84bb-49cc-9f9b-39ed60ac3798",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Returns.RefundRmasMinion, Sitecore.Commerce.Plugin.Returns\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": []\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run FullIndex Minion - Orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d9e1e34-550b-4359-b116-2d82d865fbc3",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.FullIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": [ \n\t\t{\n\t\t\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\t\t\"WithListToWatch\": \"Orders\"\n\t\t}\n\t]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run IncrementalIndex Minion - Orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9d475016-e753-468a-b092-5f3dbab2cfcc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.IncrementalIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"OrdersIndex\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run FullIndex Minion - Customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "999ea946-ce47-4f0e-974b-a053245c5c91",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.FullIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"Customers\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run FullIndex Minion - PriceCards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d88e2b7f-ede6-49cf-8d19-2e1fdfffaae0",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.FullIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"PriceCards\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run FullIndex Minion - Promotions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f7bf5632-f0db-4e26-b9fa-b006a5624fcc",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.FullIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"Promotions\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run IncrementalIndex Minion - Customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "49d6a01b-c8d8-4af2-8f00-c75e44e2202b",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.IncrementalIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"CustomersIndex\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run IncrementalIndex Minion - Promotions",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa5d8cbb-95d4-47fb-8c34-fa6b7832ff16",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.IncrementalIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"PromotionsIndex\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run IncrementalIndex Minion - PriceCards",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3fd88403-a3b3-4c76-ba92-8a3ea8d9a8dd",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.IncrementalIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"PriceItemsIndex\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run DeleteIndexDocuments Minion - Customers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6d0f6cd5-4208-4497-b8a6-8d35dd79c866",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.DeleteIndexDocumentsMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"DeletedCustomersIndex\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run FullIndex Minion - Catalog Items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "686398a8-b5c4-43cc-8816-0a46405bedc6",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.FullIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"Catalogs\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run IncrementalIndex Minion - Catalog Items",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5352244-b091-4a17-964e-920910f697ea",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.IncrementalIndexMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"CatalogItemsIndex\"\n}\n]\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run Purge Catalogs Minion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "691731c5-12a4-4360-82cc-50eeac8571a7",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Catalog.PurgeCatalogsMinion, Sitecore.Commerce.Plugin.Catalog\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": []\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run Purge Categories Minion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6a35c1ee-67e3-42dc-9aa5-039335737ad4",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Catalog.PurgeCategoriesMinion, Sitecore.Commerce.Plugin.Catalog\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": []\n}\n"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run Purge Carts Minion",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5b6a6f6-b292-40c4-b89b-db38099196c9",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"minionFullName\":\"Sitecore.Commerce.Plugin.Carts.PurgeCartsMinion, Sitecore.Commerce.Plugin.Carts\",\n\t\"environmentName\": \"{{MinionsEnvironment}}\",\n\t\"policies\": []\n}"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run DeleteIndexDocuments Minion - Catalog",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "10f1a4e6-40fa-418c-8de0-65fea1ca4525",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Search.DeleteIndexDocumentsMinion, Sitecore.Commerce.Plugin.Search\",\n\"environmentName\": \"{{MinionsEnvironment}}\",\n\"policies\": [ \n{\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\n\"WithListToWatch\": \"DeletedCatalogItemsIndex\"\n}\n]\n}"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run FullIndex Minion - Storefront (Master)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb0b5f30-e2fe-473b-8c53-5b45c84e4ec4",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Catalog.ItemFullIndexMinion, Sitecore.Commerce.Plugin.Catalog\",\r\n\"environmentName\": \"{{MinionsEnvironment}}\",\r\n\"policies\": [ \r\n{\r\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\r\n\"WithListToWatch\": \"SitecoreItemIndexingMaster\"\r\n},\r\n{\r\n\t\"@odata.type\": \"Sitecore.Commerce.Plugin.Search.SitecoreItemRebuildIndexNamePolicy\",\r\n\"IndexName\": \"SXAStorefront_master_index\"\r\n}\r\n]\r\n}"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run FullIndex Minion - Storefront (Web)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b27a1941-3657-4b61-b286-697c09f85fbb",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Catalog.ItemFullIndexMinion, Sitecore.Commerce.Plugin.Catalog\",\r\n\"environmentName\": \"{{MinionsEnvironment}}\",\r\n\"policies\": [ \r\n{\r\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\r\n\"WithListToWatch\": \"SitecoreItemIndexingWeb\"\r\n},\r\n{\r\n\t\"@odata.type\": \"Sitecore.Commerce.Plugin.Search.SitecoreItemRebuildIndexNamePolicy\",\r\n\"IndexName\": \"SXAStorefront_web_index\"\r\n}\r\n]\r\n}"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run IncrementalIndex Minion - Storefront (Master)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "be1e9ffb-2f5b-4991-abc6-e0fa6815dc0e",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Catalog.ItemIncrementalIndexMinion, Sitecore.Commerce.Plugin.Catalog\",\r\n\"environmentName\": \"{{MinionsEnvironment}}\",\r\n\"policies\": [ \r\n{\r\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\r\n\"WithListToWatch\": \"CatalogItemsIncrementalIndexMaster\"\r\n},\r\n{\r\n\t\"@odata.type\": \"Sitecore.Commerce.Plugin.Search.SitecoreItemRebuildIndexNamePolicy\",\r\n\"IndexName\": \"SXAStorefront_master_index\"\r\n}\r\n]\r\n}"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Run IncrementalIndex Minion - Storefront (Web)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d096e8e0-cad8-4049-8f25-6111909479c8",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"postman.setGlobalVariable(\"LongRunningTaskId\", jsonData.TaskId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							},
+							{
+								"key": "ShopName",
+								"value": "{{ShopName}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"minionFullName\":\"Sitecore.Commerce.Plugin.Catalog.ItemIncrementalIndexMinion, Sitecore.Commerce.Plugin.Catalog\",\r\n\"environmentName\": \"{{MinionsEnvironment}}\",\r\n\"policies\": [ \r\n{\r\n\"@odata.type\": \"Sitecore.Commerce.Core.RunMinionPolicy\",\r\n\"WithListToWatch\": \"CatalogItemsIncrementalIndexWeb\"\r\n},\r\n{\r\n\t\"@odata.type\": \"Sitecore.Commerce.Plugin.Search.SitecoreItemRebuildIndexNamePolicy\",\r\n\"IndexName\": \"SXAStorefront_web_index\"\r\n}\r\n]\r\n}"
+						},
+						"url": {
+							"raw": "{{MinionsHost}}/{{OpsApi}}/RunMinion()",
+							"host": [
+								"{{MinionsHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RunMinion()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Policies",
+			"item": [
+				{
+					"name": "Add policy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"policy\": {\n\"PolicyId\": \"2bf7a46e853243aeb06124c7851de158\",\n\"PreorderableAvailabilityExpires\": 8\n},\n\"policyType\": \"Sitecore.Commerce.Plugin.Preorderable.GlobalPreorderablePolicy, Sitecore.Commerce.Plugin.Preorderable\",\n\"entityId\": \"Entity-CommerceEnvironment-AdventureWorksShops\",\n\"environmentName\": \"GlobalEnvironment\"\n}\n"
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/AddPolicy()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"AddPolicy()"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove policy",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"policyType\": \"Sitecore.Commerce.Plugin.Preorderable.GlobalPreorderablePolicy, Sitecore.Commerce.Plugin.Preorderable\",\n\"entityId\": \"Entity-CommerceEnvironment-AdventureWorksShops\",\n\"policyId\": \"2bf7a46e853243aeb06124c7851de158\",\n\"environmentName\": \"GlobalEnvironment\"\n}\n"
+						},
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/RemovePolicy()",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"RemovePolicy()"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Update / Migration",
+			"item": [
+				{
+					"name": "Upgrade catalog relationships",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "55fe2003-05f8-45b0-bbc0-f20d603879f8",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{SitecoreIdToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{OpsApiHost}}/{{OpsApi}}/UpgradeCatalogRelationships(environment='{{Environment}}')",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"{{OpsApi}}",
+								"UpgradeCatalogRelationships(environment='{{Environment}}')"
+							]
+						},
+						"description": "Runs an InitializeEnvironment Pipeline which allows any artifacts to be created that need to be in a new environment."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Health Check",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{OpsApiHost}}/health",
+							"host": [
+								"{{OpsApiHost}}"
+							],
+							"path": [
+								"health"
+							]
+						},
+						"description": "Perform a health check"
+					},
+					"response": []
+				}
+			],
+			"description": "Perform a health check request to the engine",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Get Registered Pipelines",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{ServiceHost}}/{{OpsApi}}/GetPipelines()",
+					"host": [
+						"{{ServiceHost}}"
+					],
+					"path": [
+						"{{OpsApi}}",
+						"GetPipelines()"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Deterministic Unique ID",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}"
+					},
+					{
+						"key": "Environment",
+						"value": "{{Environment}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ServiceHost}}/{{OpsApi}}/GetDeterministicEntityUniqueId(entityId='Entity-Catalog-Adventure Works Catalog', entityVersion=1)",
+					"host": [
+						"{{ServiceHost}}"
+					],
+					"path": [
+						"{{OpsApi}}",
+						"GetDeterministicEntityUniqueId(entityId='Entity-Catalog-Adventure Works Catalog', entityVersion=1)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Running plugins",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{ServiceHost}}/{{OpsApi}}/RunningPlugins()",
+					"host": [
+						"{{ServiceHost}}"
+					],
+					"path": [
+						"{{OpsApi}}",
+						"RunningPlugins()"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Api Routes",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{OpsApiHost}}/{{OpsApi}}/GetApiRoutes()",
+					"host": [
+						"{{OpsApiHost}}"
+					],
+					"path": [
+						"{{OpsApi}}",
+						"GetApiRoutes()"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CommerceOps Metadata",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{OpsApiHost}}/{{OpsApi}}/$metadata",
+					"host": [
+						"{{OpsApiHost}}"
+					],
+					"path": [
+						"{{OpsApi}}",
+						"$metadata"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SetCache",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "53e51d04-5f93-4e9b-9ee2-a116bb92b2ec",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ShopName",
+						"value": "{{ShopName}}"
+					},
+					{
+						"key": "Language",
+						"value": "{{Language}}"
+					},
+					{
+						"key": "Currency",
+						"value": "{{Currency}}"
+					},
+					{
+						"key": "Environment",
+						"value": "{{Environment}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"entity\": {\r\n        \"@odata.type\": \"Sitecore.Commerce.Plugin.Catalog.SellableItem\",\r\n        \"Description\": \"Get studio-level sound quality with Helix’s FM-X wireless over-the-ear headphones that comes with our custom FineTuneX transmitter to deliver automatic tuning. The FM-X brings a range of up to 150 feet and an award-winning noise reduction system. The easy-adjust headband offers unmatched comfort.\",\r\n        \"ProductId\": \"6042060\",\r\n        \"Brand\": \"Sub-category search terms: over ear, FM-X, wireless, headphones, auto-tuning\",\r\n        \"SitecoreId\": \"0a3dcc62-47fe-94a6-8496-85dbcd7702d3\",\r\n        \"ParentCatalogList\": \"59ddadc1-9b88-727e-9e14-3f6cf321ae0f\",\r\n        \"ParentCategoryList\": \"a0860c27-2a32-841f-7014-75b163b9471e|368aae84-008e-43a6-150f-826085a271ba\",\r\n        \"ItemVariations\": \"56042060\",\r\n        \"IsBundle\": false,\r\n        \"Components\": [\r\n            {\r\n                \"@odata.type\": \"Sitecore.Commerce.Plugin.ManagedLists.ListMembershipsComponent\",\r\n                \"Memberships\": [\r\n                    \"SellableItems\"\r\n                ],\r\n                \"Id\": \"515b1bb824e44f8cab6ccc60844c32b6\"\r\n            }\r\n        ],\r\n        \"DateCreated\": \"2019-05-16T14:09:35.7678912+00:00\",\r\n        \"DateUpdated\": \"2020-02-25T22:13:23.3736567+00:00\",\r\n        \"DisplayName\": \"FM-X Wireless FM Over-the-Ear\",\r\n        \"FriendlyId\": \"6042060\",\r\n        \"Id\": \"Entity-SellableItem-6042060\",\r\n        \"Version\": 1,\r\n        \"EntityVersion\": 1,\r\n        \"Published\": true,\r\n        \"IsPersisted\": true,\r\n        \"Name\": \"FM-X Wireless FM Over-the-Ear\",\r\n        \"UniqueId\": \"ccc5aaf3-03f3-550b-1b4a-043903c49bcb\"\r\n    }\r\n}"
+				},
+				"url": {
+					"raw": "{{ServiceHost}}/{{ShopsApi}}/SetCache()",
+					"host": [
+						"{{ServiceHost}}"
+					],
+					"path": [
+						"{{ShopsApi}}",
+						"SetCache()"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCache",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "13de591c-fc7a-4d18-9343-c488275f774b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ShopName",
+						"value": "{{ShopName}}"
+					},
+					{
+						"key": "Language",
+						"value": "{{Language}}"
+					},
+					{
+						"key": "Currency",
+						"value": "{{Currency}}"
+					},
+					{
+						"key": "Environment",
+						"value": "{{Environment}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{ServiceHost}}/{{ShopsApi}}/GetCache(entityId='Entity-SellableItem-6042060')",
+					"host": [
+						"{{ServiceHost}}"
+					],
+					"path": [
+						"{{ShopsApi}}",
+						"GetCache(entityId='Entity-SellableItem-6042060')"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FindEntities",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "403b42b2-76aa-4f4e-aa53-8a66fd06fb0b",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "ShopName",
+						"value": "{{ShopName}}"
+					},
+					{
+						"key": "Language",
+						"value": "{{Language}}"
+					},
+					{
+						"key": "Currency",
+						"value": "{{Currency}}"
+					},
+					{
+						"key": "Environment",
+						"value": "{{Environment}}"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{SitecoreIdToken}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ids\": [\r\n        \"Entity-SellableItem-6042532\",\r\n        \"Entity-SellableItem-6042267\",\r\n        \"Entity-SellableItem-6042188\",\r\n        \"Entity-SellableItem-7042128\",\r\n        \"Entity-SellableItem-6042331\",\r\n        \"Entity-SellableItem-6042060\",\r\n        \"Entity-SellableItem-6042515\",\r\n        \"Entity-SellableItem-6042370\",\r\n        \"Entity-SellableItem-6042901\",\r\n        \"Entity-SellableItem-6042749\",\r\n        \"Entity-SellableItem-6042108\",\r\n        \"Entity-SellableItem-6042935\",\r\n        \"Entity-SellableItem-6042083\",\r\n        \"Entity-SellableItem-6042190\",\r\n        \"Entity-SellableItem-6042149\",\r\n        \"Entity-SellableItem-6042116\",\r\n        \"Entity-SellableItem-7042084\",\r\n        \"Entity-SellableItem-6042968\",\r\n        \"Entity-SellableItem-6042376\",\r\n        \"Entity-SellableItem-6042261\",\r\n        \"Entity-SellableItem-6042459\",\r\n        \"Entity-SellableItem-6042929\",\r\n        \"Entity-SellableItem-6042454\",\r\n        \"Entity-SellableItem-7042142\",\r\n        \"Entity-SellableItem-6042114\",\r\n        \"Entity-SellableItem-6042765\",\r\n        \"Entity-SellableItem-6042222\",\r\n        \"Entity-SellableItem-6042966\",\r\n        \"Entity-SellableItem-6042058\",\r\n        \"Entity-SellableItem-6042103\",\r\n        \"Entity-SellableItem-7042169\",\r\n        \"Entity-SellableItem-6042337\",\r\n        \"Entity-SellableItem-6042091\",\r\n        \"Entity-SellableItem-6042606\",\r\n        \"Entity-SellableItem-6042878\",\r\n        \"Entity-SellableItem-6042493\",\r\n        \"Entity-SellableItem-6042761\",\r\n        \"Entity-SellableItem-6042191\",\r\n        \"Entity-SellableItem-6042552\",\r\n        \"Entity-SellableItem-7042167\",\r\n        \"Entity-SellableItem-6042913\",\r\n        \"Entity-SellableItem-6042456\",\r\n        \"Entity-SellableItem-7042153\",\r\n        \"Entity-SellableItem-6042548\",\r\n        \"Entity-SellableItem-6042970\",\r\n        \"Entity-SellableItem-6042513\",\r\n        \"Entity-SellableItem-6042147\",\r\n        \"Entity-SellableItem-6042384\",\r\n        \"Entity-SellableItem-6042530\",\r\n        \"Entity-SellableItem-6042612\",\r\n        \"Entity-SellableItem-6042380\",\r\n        \"Entity-SellableItem-6042526\",\r\n        \"Entity-SellableItem-6042827\",\r\n        \"Entity-SellableItem-7042162\",\r\n        \"Entity-SellableItem-6042645\",\r\n        \"Entity-SellableItem-6042280\",\r\n        \"Entity-SellableItem-6042502\",\r\n        \"Entity-SellableItem-7042098\",\r\n        \"Entity-SellableItem-6042262\",\r\n        \"Entity-SellableItem-6042238\",\r\n        \"Entity-SellableItem-6042570\",\r\n        \"Entity-SellableItem-6042943\",\r\n        \"Entity-SellableItem-6042208\",\r\n        \"Entity-SellableItem-6042725\",\r\n        \"Entity-SellableItem-6042480\",\r\n        \"Entity-SellableItem-6042394\",\r\n        \"Entity-SellableItem-6042737\",\r\n        \"Entity-SellableItem-6042148\",\r\n        \"Entity-SellableItem-7042134\",\r\n        \"Entity-SellableItem-6042186\",\r\n        \"Entity-SellableItem-7042078\",\r\n        \"Entity-SellableItem-6042412\",\r\n        \"Entity-SellableItem-6042910\",\r\n        \"Entity-SellableItem-6042072\",\r\n        \"Entity-SellableItem-6042909\",\r\n        \"Entity-SellableItem-6042335\",\r\n        \"Entity-SellableItem-6042144\",\r\n        \"Entity-SellableItem-6042733\",\r\n        \"Entity-SellableItem-6042460\",\r\n        \"Entity-SellableItem-6042976\",\r\n        \"Entity-SellableItem-6042780\",\r\n        \"Entity-SellableItem-6042078\",\r\n        \"Entity-SellableItem-6042240\",\r\n        \"Entity-SellableItem-6042665\"\r\n    ]\r\n}"
+				},
+				"url": {
+					"raw": "{{ServiceHost}}/{{ShopsApi}}/FindEntities()",
+					"host": [
+						"{{ServiceHost}}"
+					],
+					"path": [
+						"{{ShopsApi}}",
+						"FindEntities()"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
